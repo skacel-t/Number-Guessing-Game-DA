@@ -99,9 +99,9 @@ def start_game():
         try:
             player_guess = int(input(f"Guess a number between {lower_value} and {upper_value}:  "))
             if player_guess > upper_value or player_guess < lower_value:
-                raise Exception("That number is out of range. Try again.")
+                raise Exception("***\nThat number is out of range. Try again.\n***")
         except ValueError as err: 
-            print("Please enter a whole number.")
+            print("***\nPlease enter a whole number.\n***")
         except Exception as err:
             print(f"{err}")
         else:    
@@ -129,7 +129,7 @@ def ask_play_again():
         try:
             play_again = input("Would you like to play again? [yes/no]  ")
             if play_again not in ("yes", "no"):
-                raise Exception("\nInvalid input. Please enter 'yes' or 'no'.\n")
+                raise Exception("***\nInvalid input. Please enter 'yes' or 'no'.\n***")
         except Exception as err:
             print(err)
         else:
@@ -150,7 +150,7 @@ def menu():
         try:
             choice = input("Enter a number from the menu above:  ")
             if choice not in ("1", "2", "3", "4", "5"):
-                raise Exception("\nInvalid input. Please enter '1', '2', '3', '4' or '5'.\n")
+                raise Exception("***\nInvalid input. Please enter '1', '2', '3', '4' or '5'.\n***")
         except Exception as err:
             print(err)
         else:
@@ -164,27 +164,29 @@ def menu():
         return True
 
     elif choice == "2":
+        print("")
         while True:
             try:
-                warning = input("\nWARNING: This will reset game statistics, are you sure you wish to proceed? [yes/no]  ")
+                warning = input("WARNING: This will reset game statistics, are you sure you wish to proceed? [yes/no]  ")
                 if warning not in ("yes", "no"):
-                    raise Exception("\nInvalid input. Please enter 'yes' or 'no'.\n")
+                    raise Exception("***\nInvalid input. Please enter 'yes' or 'no'.\n***")
             except Exception as err:
                 print(err)
             else:
                 break
         if warning == "no":
             return True
+        print("")
         while True:
             try:
-                inf = int(input("\nPlease enter the lower value for the range:  "))
+                inf = int(input("Please enter the lower value for the range:  "))
                 sup = int(input("Please enter the upper value for the range:  "))
                 if inf < 0 or sup < 0:
                     raise ValueError
                 if inf >= sup:
-                    raise Exception("Invalid input. The lower value must be smaller than the upper value!")
+                    raise Exception("***\nInvalid input. The lower value must be smaller than the upper value!\n***")
             except ValueError:
-                print("At least one invalid input. Please only enter whole numbers greater than zero.\n")
+                print("***\nAt least one invalid input. Please only enter whole numbers greater than zero.\n***")
             except Exception as err:
                 print(err)
             else:
