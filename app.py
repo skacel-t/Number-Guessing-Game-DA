@@ -3,25 +3,24 @@ from statistics import mean, median, multimode
 
 
 # Create a way to store the current range, so that it doesn't reset between sessions
+def update_range(val1, val2):
+    with open("range.txt", "w") as file:
+        file.write(str(val1)+"\n")
+        file.write(str(val2)+"\n")
+
+
 try:
     range_file = open("range.txt", "r")
 except FileNotFoundError:
     lower_value = 1
     upper_value = 10
-    # and create the file if it doesn't exist
-    create_file = open("range.txt", "w")
-    create_file.close()
+    # create the file if it doesn't exist and update with default values
+    update_range(1, 10)
 else:
     range_list = range_file.readlines()
     lower_value = int(range_list[0])
     upper_value = int(range_list[1])
     range_file.close()
-
-
-def update_range(val1, val2):
-    with open("range.txt", "w") as file:
-        file.write(str(val1)+"\n")
-        file.write(str(val2)+"\n")
 
 
 # Next, we tackle posting and getting data form a text file, this ensures tracking even if the app is quit
